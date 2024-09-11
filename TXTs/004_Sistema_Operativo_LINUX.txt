@@ -1,0 +1,110 @@
+SISTEMA OPERATIVO LINUX
+___________________________________________________________________________________________________________________________________________________________
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Principale sistemas operativos
+	‣ Linux
+		✓ Para escritorio: Ubuntu, Mint, deepin, etc
+		✓ Para servidores: Ubuntu Server, Debian, CentOS, Red Hat...
+	‣ Windows
+		✓ Para Escritorio: Windows 7, Windows 10, etc
+		✓ Para Servidores: Windows Server
+	‣ Mac OS X: Para escritorio y Workstation
+	‣ UNIX: Para servidores, Solaris, BSD, Irix 
+
+Ciclo de vida de una distribución Linux
+	Cuando se lanza una distribución hay un periodo de tiempo en la que está soportada por la organización encargada de ella, pero pasado ese plazo deja de
+	ofrecerse y se considera obsoleta. Depende la distribución estos plazos pueden ser muy distintos. Por ejemplo:
+		‣ Ubuntu: Suele tener una política a lanzar una nueva versión cada 6 meses (no siempre se cumple), 
+			pero tiene una versión LTS (Long Term Support) que tiene soporte durante 5 años.
+	‣ Red Hat Enterprise Linux: Tiene soporte durante 10 años
+	‣ Debian: Normalmente tiene nueva versión cada 2 años. Siempre tiene una versión en pruebas (Testing) otra inestable (Unstable) y la final es la estable.
+
+Interfaz gráfica vs linea de comandos (CLI)
+
+Para entornos de escritorio es necesario una buena interfaz gráfica que facilite el uso a todo tipo de personas. Se maneja con el ratón y contiene ventanas, iconos,
+sonidos... Windows tiene su propio entorno, pero Linux puede elegir entre varias opciones (Gnome, KDE, etc..).
+Pero para servidores se prioriza el intérprete de comandos ya que es muy común acceder de forma remota y es mucho más eficiente hacerlo en modo texto (además
+de otras ventajas).
+Linux tiene unos potentísimos intérpretes (Shell, consola...) entre los que destaca Bash, zsh, sh, etc.. Windows Server no se podía instalar sin entorno gráfico, 
+pero esto ha cambiado recientemente y Windows está adoptando con sus nuevas políticas y el PowerShell muchas de las ventajas que Linux ha tenido para adaptarse 
+con firmeza a los entornos de servidor.
+
+SWAP
+
+COMPRENDIENDO EL HARDWARE DE LA COMPUTADORA
+___________________________________________________________________________________________________________________________________________________________
+PLACA BASE, MADRE o MOTHERBOARD ->Sirve de conexión entre todos los componentes del ordenador. Su tecnología condiciona el resto de componentes que se pueden acoplar a un pc:
+	‣ Tipo de procesador: AMD, Intel,
+	‣ Tipo de RAM: DDR3, DDR4...
+	‣ Tipo de Puertos de expansión: PCI, AGP, PCI-Express
+También hay que tener en cuenta la velocidad de bus, dispositivos integrados(sonido, red, tarjeta gráfica, puertos de comunicación...)
+
+RAM -> Es la memoria principal del sistema. Tendremos en cuenta:	[[COMANDO RELACCIONADO = free]]
+	‣ Cantidad de memoria
+	‣ Velocidad
+	‣ Tecnología
+	‣ Número de módulos
+MICROPROCESADOR	->Es el "cerebro" del ordenador. El que se encarga de ejecutar las instrucciones.[[COMANDO RELACCIONADO = arch, lscpu]][[FICHEROS RELACCIONADOS = /proc/cpuinfo]]
+	Prestaciones:
+	‣ Velocidad: se mide en Herzios (número de ciclos por segundo). MHz o GHz.
+	‣ Núcleos o cores: cantidad de unidades de procesamiento independientes dentro del mismo microprocesador.
+	‣ Longitud de "palabra": 32 bits (x86) o 64 bits (x64).
+	‣ Tecnologías: juego de instrucciones soportadas, Hyperthreading, etc..
+	‣ Cantidad de memoria caché: es más rápida que la RAM. Varios niveles: L1, L2, L3
+ALMACENAMIENTO	->[[COMANDO RELACCIONADO = df, lsblk, fdisk, gdisk]]
+	‣ Disco magnético
+		‣ PATA
+		‣ SATA
+	‣ Disco SSD
+		‣ SATA
+		‣ NVMe (PciExpress o M.2)
+	Velocidades de lectura y de escritura:
+		‣ Disco duro (HDD) de 7.200 RPM: 80-160 MB/s
+		‣ SSD con conexión SATA 3: hasta 550 MB/s
+		‣ SSD con conexión NVMe: hasta 3.500 MB/s
+	Referencias a unidades de disco y a sus particiones
+		Para acceder a los discos, Linux tiene un fichero por cada unidad física y también por cada partición. 
+		Estos ficheros estarán ubicados en /dev/ y tendrán un nombre según:
+			‣ Su tecnología: hd (discos PATA), sd (SATA, USB, etc.)
+			‣ El orden donde está conectado a la placa: a, b, c....
+			‣ El número de partición: 1, 2 ,3...
+		De esta forma /dev/sda hace referencia el primer disco SATA, /dev/sdb2 hace referencia a la segunda partición del segundo disco SATA, /dev/hdc1 hace
+		referencia a la primera partición del tercer disco PATA, etc.
+
+DRIVER o CONTROLADORES DE DISPOSITIVO
+	Cada tipo de dispositivo hardware tiene su manera de funcionar. No es lo mismo leer un dato de un disco magnético (girar el disco, mover la cabeza lectora,
+	seleccionar el sector, ect..) que de un disco SSD que sólo contiene chips de memoria.
+	Para que el sistema operativo pueda hacer de intermediario entre los programas que quieren usar los dispositivos y el hardware de éstos, son necesarios los
+	controladores de dispositivo o drivers. Algunos vienen integrados en el sistema operativo pero otros habrá que instalaros (en el caso de Linux mediante módulos). 
+PERIFERICOS
+	Son los dispositivos que permiten al sistema comunicarse con el exterior (pantalla, teclado, ratón, impresora, tarjeta wifi, etc)
+
+PARTICIONES DE DISCO
+
+	FHS- Filesystem Hierarchy Standard
+	
+	/ 	la raíz o root, o contenedor de todo el sistema de jerarquía.
+	/bin/ 	Aplicaciones binarias
+	/boot/ 	Archivos cargadores de arranque
+	/sys/
+	/dev/ 	Contiene archivos especiales asociados a dispositivos hardware.
+	/etc/ 	Contiene archivos de configuración del sistema
+			
+
+	/home/ 	Contiene los directorios de trabajo de los usuarios
+	/var/ 	Archivos variables, tales como logs, archivos spool, bases de datos, archivos de e-mail temporales, y algunos archivos temporales en general. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+...

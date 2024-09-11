@@ -1,0 +1,364 @@
+alonso@debian: ~$
+root@maquina: ~#
+usuario@maquina: directorioHome
+___________________________________________________________________________________________________________________________________________________________
+
+
+sudo 
+su 
+
+COMANDO	DESCRIPCIÓN									EJEMPLO
+___________________________________________________________________________________________________________________________________________________________
+ls	Lista los archivos y directorios en el directorio actual.			ls -l muestra detalles con formato largo.
+	-l	Nos brinda más información de los archivos, con el tamaño en bytes de cada archivo.
+	-h	Nos brinda el tamaño en formato entendible para los humanos, no bytes.
+	-S	Ordena en función al tamaño.
+	-r	Ordenación inversa.
+	-t	Ordena por la fecha.
+
+cd	Cambia de directorio.Se puede usar con o sin parámetros.			cd /ruta/al/directorio
+	Uso de la virgulilla (~)
+	Uso del guión (-)
+	Uso de los dos puntos(..)
+--------
+pwd	Muestra la ruta del directorio actual.						pwd
+
+man	Muestra el manual de un comando.						man comando
+	-f 
+	-k
+
+info	Muestra información de un comando, incluyendo hiperenlaces.			info comando
+	? obtendremos ayuda de como desplazarnos por las páginas info.
+
+type	Te permite saber a qué categoría pertenece un comando.				type echo
+
+uname	Permite ver información sobre el S.O. -a para verla toda.			uname -a
+
+ps	Muestra información sobre los procesos en ejecución.				ps aux
+
+locate	Muestra la ubicación de un archivo.						locate archivo.
+	updatedb para actualizar la bbdd con las localidades de los elementos.
+
+top	Muestra información en tiempo real sobre los procesos y recursos del sistema.	top
+
+df	Muestra el espacio en disco utilizado y disponible.				df -h
+
+du	Muestra el espacio utilizado por directorios y archivos.			du -sh directorio
+--------
+which	Permite saber la ruta de un programa.						which programa
+
+set	Muestra o modifica la configuración de nuestro entorno.				set -o opcion
+	 -o para activar +o para desactivar.
+
+export	Crea o modifica variables de entorno.						Export NOMBRE=Alonso
+
+unset	Elimina una variable de entorno.						unset NOMBRE
+
+env 	Muestra una lista de las variables de entorno.					env
+
+kill	Envía una señal a un proceso, generalmente para detenerlo.			kill -9 PID
+--------
+cp	Copia archivos o directorios.							cp archivo_origen.txt carpeta_destino/
+	-r	hace recursiva esa orden.
+
+mv	Mueve o Renombra archivos o directorios.					mv archivo.txt nuevo_nombre.txt
+											mv archivo nueva_ruta/
+
+rm	Elimina archivos o directorios.							rm archivo.txt
+	-r 	Te permite eliminar directorios.									rm -r 
+
+mkdir	Crea un nuevo directorio.							mkdir nuevo_directorio	mkdir ruta_existente/nuevo_directorio
+	-p crea todos los directorios de la ruta que le facilitamos al comando.
+
+touch	Te permite crear un nuevo archivo.						touch mi_fichero
+
+>	Te permite crear un nuevo archivo.						> mi_archivo
+
+rmdir	Elimina un directorio vacío.							rmdir directorio_vacio
+--------
+
+chmod	Cambia los permisos de un archivo o directorio.					chmod +x archivo
+
+chown	Cambia el propietario de un archivo o directorio.				chown nuevo_propietario archivo.txt
+
+--------
+echo	Muestra el texto que recibe. -e interpreta los carácteres especiales.		echo -e "Hola \n mundo"
+	Importante usar comillas dobles, no simples para que interprete el contenido.
+
+tar	Compacta varios ficheros y directorios en un archivo comprimido.		Sintaxis: tar [opciones] destino.tar datos
+		Uso básico. Compactar: 							tar -cf fichero.tar /etc/ /var/
+ 		Extraer: 								tar -xf fichero.tar
+		Comprimir con gzip: 							tar -czf fichero.tar.gz /etc/ /var/
+		Extraer: 								tar -xzf fichero.tar.gz
+		Opciones más importantes:
+ 			 - c : compacta
+			 - x : expande (extrae)
+			 - f : escribe o lee de un fichero
+			 - z : comprime o descomprime con gzip
+			 - j : comprime o descomprime con bzip2
+			 - P : utiliza rutas absolutas (por defecto serán relativas)
+			 - p : preserva los permisos de los ficheros originales
+			 - r : añade elementos a un fichero compactado
+			 - t : muestra la información que contiene un fichero tar 
+
+gzip	Comprimir y descomprimir ficheros.						gunzip fichero.xz
+bzip	Con el prefijo (un-) se puede descomprimir también con la opción (-d).		bunzip 			bzip -k fichero
+xz	Para conservar el originar opción (-k).						unxz			bzip -d fichero.bz
+
+cat	Muestra el contenido de un archivo.Puede concatenar ficheros de texto.		cat archivo.txt
+	Sesuele usar para mostrar contenido por pantalla.(-n)muestra el num de linea
+
+more	Muestra el contenido de un archivo de texto página por página.
+
+less	También muestra el contenido de un archivo de texto, más funcionalidades que more.
+
+head	Muestra las primeras 10 lineas del fichero.Puede funcionar con varios ficheros.		head -n20 fichero
+	Si pones la opcion (-n) y el num de lineas q quieres ver, aumenta el num de lineas.	
+
+tail	Muestra las primeras 10 lineas del fichero.Puede funcionar con varios ficheros.		tail -15 fichero
+	Si pones la opcion (-n) y el num de lineas q quieres ver, aumenta el num de lineas.
+
+wc	Muestra el total de lineas(-l), palabras(-w) y carácteres(-m).				wc
+
+rev	invierte el orden de los caracteres en cada línea de un archivo o entrada de texto.	rev nombre_del_archivo
+
+cut	Muestra solo una parte de cada linea.(corte vertical)
+	(-c)Selecciona solo los carácteres que le indiquemos, se pueden usar nums independientes	cut -c 5,10 fichero
+	 separados por comas, o dos nums separados por guión para indicar un rango.			cut -c 5-10 fichero
+	(-d) Indica un caracter tabulador.								cut -d":" fichero
+	(-f) Elige las columnas que queremos que se muestren						
+
+grep	Muestra las líneas que cumplen con un patrón.							grep palabra archivo.txt
+	(-v) Muestra las que NO coinciden con el patrón.
+	(-l) Solo indica el nombre del fichero donde encontró el patrón.
+	(-w) El patrón tiene que ser una palabra independiente.
+	(-n) Muestra el número de linea.
+	(-i) No hace distinción entre mayúsculas y minúsculas.
+	(-c) Indica la cantidad de lineas que coinciden con el patrón.
+	(-r) Busca el los ficheros de forma recursiva.
+
+sort 	ordena líneas de texto en un archivo o entrada estándar y muestra el resultado en la salida estándar.		sort archivo
+
+uniq	Elimina líneas duplicadas consecutivas (por defecto).								uniq nombre_del_archivo
+		(-c) para contar la cantidad de ocurrencias de cada línea.
+		(-d) para mostrar solo líneas duplicadas.
+		(-u) para mostrar solo líneas no duplicadas.
+		(-i) ignora las diferencias entre mayúsculas y minúsculas.	
+
+
+
+EDITORES DE TEXTO
+___________________________________________________________________________________________________________________________________________________________
+NANO	Editor de texto en la línea de comandos.				nano nombre_archivo
+	Funcionalidad clave:
+		Ctrl + O: Guarda el archivo.
+		Ctrl + X: Sale de nano.
+		Ctrl + G: Muestra la ayuda (puedes obtener información sobre otros comandos).
+
+VI	Vi es el primer editor de texto para la consola de Linux. Es importante conocerlo porque está en TODAS las distribuciones.
+VIM	Actualmente es más común usar Vim (vi mejorado).
+	• MODO COMANDO
+	Se empieza en este modo, siempre podemos volver a él pulsando la tecla ESC.
+	Podemos realizar acciones pulsando una o varias teclas 
+		‣ Con los cursores o las teclas h,j,k,l nos desplazamos por el texto
+		‣ dd borra una linea, yy copia y p pega
+		‣ o añade una nueva linea, u deshacer la última acción
+		‣ /palabra realiza una búsqueda hacia abajo, ?palabra busca hacia arriba
+		‣ i inserta texto antes del cursor, a después del cursor
+		‣ ZZ guarda el documento y sale
+		‣ v selección visual de texto
+	• MODO INSERTAR
+	Podemos insertar texto con normalidad.
+	• MODO EX
+	 Para acceder al modo ex pulsamos los dos puntos y a continuación ponemos la
+	acción a realizar.
+		‣ q salir, w escribir el fichero. Se pueden combinar como :wq
+		‣ Se puede usar la ! para forzar una acción, como salir sin guardar. :q!
+
+EMACS	Es un editor de texto con una interfaz de usuario basada en texto. Ofrece funcionalidades extensivas, y es conocido por su flexibilidad y capacidad de personalización.
+
+
+
+SHELL SCRIPT
+___________________________________________________________________________________________________________________________________________________________
+Es un archivo que contiene varios comando para que el shell los interprete; su principal objetivo es automatizar tareas o realizar acciones que un solo comando no puede.
+El archivo en cuestión debe tener permisos de ejecución y se suele emplear la extensión (.sh)
+La primera línea indica la ruta del intérprete(programa que ejecuta las instrucciones del script) y empieza por #!/bin/bash , la segunda suele ser un comentario explicativo.
+• PARÁMETROS
+	▸ Un script puede recibir información mediante parámetros separado por espacios, que serán cadenas de texto que pondremos después del nombre del script
+	▸ Dentro del script podremos acceder a ellos mediante variables predefinidas del sistema:
+		$n => la información de un parámetro en concreto, siendo n un número del parámetro.
+		$* => todos los parámetros. Se presentan en una sola cadena de caracteres.
+		$@ => todos los parámetros. Es una lista con un elemento por cada parámetro recibido.
+		$# => el número de parámetros con los que se ha invocado el script. Será una cifra.
+• VARIABLES
+	▸ Sirven para guardar información y poder acceder a ella posteriormente.
+	▸ Para referirnos a ellas utilizaremos un identificador que estará compuesto por caracteres alfa numéricos o guión bajo, pero no pueden empezar por un número.
+	▸ Se distingue entre mayúsculas y minúsculas. $VAR no es igual que $var.
+• LECTURA / ESCRITURA DE VARIABLES
+	▸ Para guardar datos en una variable simplemente tendremos que asignarle un valor, utilizando su identificador SIN el símbolo del dólar:
+		 	variable=“Hola” (es importante que todo esté junto, sin espacios)
+	▸ Y para acceder a su contenido usaremos el símbolo del dólar seguido de su identificador:
+ 			echo $variable o llaves: echo ${variable}
+• MÁS VARIABLES PREDEFINIDAS
+	▸ Además de las variables para consultar los parámetros, disponemos de algunas similares pero que contiene otra tipo de información:
+		$0 => El nombre del script
+		$$ => PID del proceso que se le ha asignado al script en ejecución
+		$? => Resultado devuelto por el último proceso ejecutado.
+		$RANDOM
+• VARIABLES DE ENTORNO
+	▸ Son variables que están definidas en el sistema y que podemos usar si las necesitamos.
+	▸ Son usadas por el propio sistema para su funcionamiento, por ejemplo $PATH
+	▸ Podemos ver las disponibles con el comando printenv
+• Entrada de texto mediante read
+---
+• Operaciones aritméticas	Para que se ejecute la operación tendremos que ponerla dentro de $(( ))
+	+ Suma
+	- Resta
+	* Multiplicación
+	/ División
+	% Resto de la División
+		echo 1+1 => sacará por pantalla 1+1			echo $((1+1)) => sacará por pantalla 2
+
+• Operaciones condicionales			Su objetivo es comprobar si una expresión es verdadera o falsa.
+	‣ Realizan comparaciones o comprueban si se cumplen condiciones.
+	‣ Utilizamos el comando test. Se puede poner de dos formas test expresión o [ expresión ]
+	Ejemplos:
+	‣ test 10 -gt 20 [ 10 -gt 20 ]			‣ test ‘hola’ = ‘holita’ [ ‘hola’ = ‘holita’ ]			‣ test -d /etc/ [ -d /etc/
+ 	COMPARACIÓN DE NUMÉROS
+		SINTAXIS 		DESCRIPCIÓN
+		ENTERO1 -eq ENTERO2 	ENTERO1 es igual que ENTERO2
+		ENTERO1 -ge ENTERO2 	ENTERO1 es mayor o igual que ENTERO2
+		ENTERO1 -gt ENTERO2 	ENTERO1 es mayor que ENTERO2
+		ENTERO1 -le ENTERO2 	ENTERO1 es menor que o igual que ENTERO2
+		ENTERO1 -lt ENTERO2 	ENTERO1 es menor que ENTERO2
+		ENTERO1 -ne ENTERO2 	ENTERO1 no es igual que ENTERO2
+ 	COMPARACIÓN DE TEXTO
+		SINTAXIS 		DESCRIPCIÓN
+		CADENA1 = CADENA2 	CADENA1 es igual que CADENA2
+ 		CADENA1 > CADENA2 	CADENA1 es mayor que CADENA2
+		CADENA1 < CADENA2 	CADENA1 es menor que CADENA2
+		CADENA1 != CADENA2 	CADENA1 no es igual que CADENA2
+		-n CADENA Cierto si la longitud de la cadena es distinta de cero
+		! EXPRESIÓN Negación: cierto si la EXPRESIÓN es falsa
+ 		EXPRESIÓN1 -a EXPRESIÓN2 Cierto si EXPRESIÓN1 y EXPRESIÓN2 son ciertas . Las dos
+ 		EXPRESIÓN1 -o EXPRESIÓN2 Cierto si EXPRESIÓN1 o EXPRESIÓN2 son ciertas. Alguna de ellas 
+
+• Comprobaciones sobre ficheros y directorios
+	SINTAXIS 		DESCRIPCIÓN
+	-d RUTA 		Cierto si la RUTA existe y es un directorio
+ 	-e RUTA 		Cierto si la RUTA existe sea el elemento que sea
+ 	-f RUTA 		Cierto si la RUTA existe y es un fichero normal
+	-r RUTA 		Cierto si la RUTA existe y se puede leer
+	-w RUTA 		Cierto si la RUTA existe y se puede escribir
+ 	-x RUTA 		Cierto si la RUTA existe y es ejecutable
+	-s RUTA 		Cierto si la RUTA existe y su tamaño es mayor que cero
+---
+• SENTENCIAS CONDICIONALES	
+	IF	Son estructuras de control que nos permiten ejecutar lineas de código solamente si se cumplen las condiciones indicadas.
+		if [ CONDICION ]; then
+ 			unos comandos
+		elif [ CONDICION ]; then
+ 			otros comandos
+		else
+ 			otros comandos diferentes 
+		fi
+• BUCLES
+	WHILE	Ejecutará las lineas que contenga mientras se cumpla una condición.
+		while [ CONDICION ]; do
+			instrucciones
+		done
+	FOR	Ejecutará las lineas que contenga hasta que termine de recorrer una lista.
+		for VARIABLE in LISTA; do
+			instrucciones
+		done
+	Podemos interrumpir un bucle con las siguientes instrucciones
+		‣ continue	Al ejecutar continue se termina la iteración actual y vuelve al inicio del bucle.
+
+		‣ break		Al ejecutar break se sale inmediatamente del bucle.
+
+VARIABLES DEL SISTEMA
+___________________________________________________________________________________________________________________________________________________________
+$USER	Imprimirá el nombre de usuario asociado con la sesión actual.
+$PATH	Especifica la lista de directorios donde el sistema buscará ejecutables de comandos.
+$SHELL	Ruta al programa de shell predeterminado para el usuario.
+
+REDIRECCION
+___________________________________________________________________________________________________________________________________________________________
+• Usando un solo > si el fichero existe, lo sobrescribe.					echo "hola mundo" > ejemplo.txt
+• Usando dos >> si existe añade el texto al final						echo "hola mundo" >> ejemplo.txt
+• Los mensajes de error se pueden redirigir de forma independiente usando 2> o 2>>		cp Descargas/ ./copias/ 2>> log.copiar
+• Para redirigir todos los mensajes se usa &> o &>>						cp Descargas/ ./copias/ &>> log.copiar
+
+• También se puede redirigir la entrada de texto, para ello usamos el carácter <, que enviará la información que lee de un fichero al comando.
+				sort < listado							mysql < db_backup.sql
+• Si queremos desechar alguna salida, podemos usar el dispositivo /dev/null. Enviar texto hará que no aparezca ni se guarde en ningún sitio.
+				grep -r max_size /etc/* &> /dev/null
+
+TUBERIAS
+___________________________________________________________________________________________________________________________________________________________
+Establece un “canal” por el que pasará el texto de un comando a otro. Esto se realiza con el carácter "|"
+			comando1 | comando2
+			echo "hola mundo" | wc
+
+
+RUTAS ABSOLUTAS Y RELATIVAS
+___________________________________________________________________________________________________________________________________________________________
+La ruta absoluta representa la ruta completa del recurso, parte del directorio raíz hasta llegar al archivo concreto que se está buscando.
+Por su parte, la ruta relativa representa solo una parte de la ruta, ya que en ella se tiene en cuenta el directorio actual desde el que se está trabajando.
+
+
+ATAJOS DE TECLADO & COMODINES(Globbing)
+___________________________________________________________________________________________________________________________________________________________
+Tab		Para completar una ruta en la consola.
+Doble tab 	Para que te muestre las posibles opciones entre las que tiene conflicto para completar la ruta.
+
+history		Muestra el historial de comandos que hemos ejecutado.				history
+!NumcomandoHistory	Exclamación + el núm del comando según el history, ejecuta dicho comando.
+
+!!		Te muestra la última instrucción y la ejecuta.
+
+Ctrl a		Te vas al principio de la sentencia.
+
+Ctrl e		Te vas al final de la sentencia.
+
+Ctrl l		Ejecuta el comando Clear.
+
+
+EXPRESIONES REGULARES
+___________________________________________________________________________________________________________________________________________________________
+*(asterisco)	Es un comodín que hace referencia cualquier cadena de caracteres en el nombre del archivo.	rm *.git	rm *.*
+
+?(interrogación)Es un comodín que hace referencia cualquier caracter, pero solo uno en el nombre del archivo.	ls ???.git
+
+CARACTERES ESPECIALES
+	^ (acento circunflejo): Inicio de linea.										grep ^a fichero 
+	$: Fin de línea														grep o$ fichero
+	. :cualquier carácter. Si queremos quitar el significado especial tendremos que poner la contrabarra \ delante.		grep "\." fichero	
+
+[](corchetes)	Cualquier carácter dentro de los que se incluyen con corchetes.
+		Rangos: Si indica el inicio y el final separados por un guión(-).
+		Negación: Se pone ^ al inicio e indica los carácteres que NO son válidos.
+		Clases: Grupos de carácteres predefinidos.
+			[:alnum:] : Las letras y Dígitos
+			[:alpha:] : Letras
+			[:blank:] : Espacios en Blanco
+			[:cntrl:] : Caracteres de control
+			[:space:] : Los Espacios en Blanco verticales y horizontales
+			[:graph:] : Caracteres imprimibles, sin incluir el Espacio en Blanco
+			[:print:] : Caracteres imprimibles, incluyendo el Espacio en Blanco
+			[:digit:] : Dígitos
+			[:lower:] : Letras minúsculas.
+			[:upper:] : Letras mayúsculas.
+			[:punct:] : Signos de puntuación.
+			[:xdigit:] : Dígitos Hexadecimales.
+
+EXPRESIONES REGULARES Extendidas -> (si usamos el comando grep debemos ponerle la opción -E, también existe el comando egrep) 
+
+	X* El asterisco concuerda con cero o más repeticiones de la expresión regular que le precede (X)
+	X? El carácter interrogación concuerda con cero o una aparición de la expresión regular que le precede (X)
+	X+ El signo más concuerda con una o más repeticiones de la expresión regular que le precede (X)
+	X{n} Concuerda con n repeticiones exactas de X
+	X{n,} Concuerda con n o más repeticiones de X
+	X{,n} Concuerda con cero o a lo sumo n repeticiones de X
+	X{n,m} Concuerda con al menos n repeticiones de X, o como mucho m repeticiones.

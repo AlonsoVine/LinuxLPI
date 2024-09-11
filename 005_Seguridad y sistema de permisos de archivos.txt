@@ -1,0 +1,126 @@
+SEGURIDAD Y SISTEMA DE PERMISOS DE ARCHIVOS
+___________________________________________________________________________________________________________________________________________________________
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+USUARIOS Y GRUPOS
+	‣ adduser: Es un script para facilitar la creación de usuarios.
+	‣ useradd [opciones] nombre_usuario
+		✓ -d: directorio home.
+		✓ -m: crea el directorio home
+		✓ -g: grupo principal
+		✓ -G: grupo/s secundario/s
+		✓ -s: intérprete de comandos
+		✓ -k: directorio de plantilla
+	‣ usermod: Modifica un usuario
+	‣ userdel: Borra un usuario. Con -r elimina sus directorios home y de email.
+	‣ chgrp: cambia de grupo de un elemento (fichero o directorio)
+	‣ chown: cambia el usuario y el grupo de uno o más elementos. La opción -R hace que sea recursivo
+			chown usuario:grupo elemento 
+
+PERMISOS
+
+Tres formas de cambiar permisos con chmod:
+		‣ + y - (el más concreto porque sólo afecta al permiso que indicamos)
+		‣ = (cambia un grupo entero de permisos)
+		‣ Usado números. (cambia TODOS los permisos)
+	Recordatorio: para referirnos a los distintos conjuntos de permisos usamos las letras u (usuario), g (grupo), o (otros) y a (all, todos).
+		Ejemplos:
+			chmod u+w-x,g-r,o+w carta.txt
+			chmod a+x script.sh
+			chmod u=rw,g=r,o-x directorio
+	Para usar números consideramos cada posición de los permisos como un bit que pondremos a 1 para concederlo o a 0 para denegarlo.
+	Los agrupamos en conjunto de 3 para representar los del usuario, grupo u otros y los pasamos de binario a decimal .
+
+		R W X R W X R W X
+		1 1 1 1 1 1 1 1 1
+
+	Si quiero poner permisos al usuario de lectura y escritura, al grupo sólo lectura y al resto nada, sería: rw- r-- --- en binario 110 010 000 y en decimal 6 2 0.
+		El comando sería chmod 620 fichero
+
+
+PERMISOS ESPECIALES
+
+	‣ SetUID: El programa que lo tenga activado se ejecutará con los permisos del usuario propietario del fichero y no con los permisos de quién invoca al programa. 
+		Se representa por la letra s como permiso de ejecución.
+	‣ SetGID: Igual que setUID pero con los permisos del grupo. En caso de ser directorio los elementos creados pertenecerán al grupo del directorio y no al
+		grupo del usuario que crea el elemento.
+	‣ Sticky Bit: En el directorio que lo tenga activado, los ficheros que contenga sólo podrán ser borrados por sus propietarios. 
+		Se representa por t en el permiso de ejecución de "los otros"
+		Para administrarlos se usan las letras: chmod u+s tux.sh o añadiendo una cifra a la izquierda usando números: chmod 1777 /home/tmp/
+		En este último caso, el orden de los bit sería setuid, setgid y sticky bit
+
+ADMINISTRACIÓN DE SEGURIDAD
+
+	su	El comando su cambia a otro usuario. Si no se indica ningún parámetro cambia a usuario root. 
+		Para que se inicie el entorno de ejecución del ususario al que cambiamos hay que poner su -
+
+	Información sobre logins
+		who	indica quien está identificado en el sistema.
+		w	muestra quién hay y qué está ejecutando.
+		last 	lista los últimos accesos que ha tenido el sistema.
+
+USUARIOS , GRUPOS Y CONTRASEÑAS
+----------------------------------------------
+	‣ /etc/passwd: fichero donde se guardarán los usuarios del sistema
+			usuario:X:UID:GID:datos_personales:directorio_home:shell
+		 nombre del ususario:x(indica que aquí antes se guardaba la psswd):ID de usuario:ID de grupo:datos_personales:directorio_home:interprete_seleccionado
+
+	useradd [opciones] nombre_usuario Crea un usuario con las opciones por defecto o con las definidas por las opciones:
+		‣ -d: directorio home.
+		‣ -m: crea el directorio home
+		‣ -g: grupo principal
+		‣ -G: grupo/s secundario/s
+		‣ -s: intérprete de comandos
+		‣ -k: directorio de plantilla
+
+	‣ /etc/shadow: fichero donde se guardarán las contraseñas cifradas de los usuarios y la información referente a su validez
+
+			alumno:$6$CmR8XmO6$/CbjqGhD70lcRXCNUKkGElC7BhsgP0LM.MJcqQ7UtwyhT.ns1
+			:17802:0:99999:7:::
+		1. Nombre de Usuario
+		2. Contraseña cifrada con formato $id$salt$hashed. El $id indica el algoritmo de cifrado:
+			$1$ MD5, $2a$ o $2y$ Blowfish, $5$ SHA-256 y $6$ SHA-512
+		3. Guarda cuándo fue cambiada por última vez (número de días desde 01/01/1970)
+		4. El mínimo de días que deben transcurrir hasta que pueda volver a cambiarse
+		5. El máximo de días de validez de la contraseña
+		6. Número de días durante los que avisará de que la clave va a caducar
+		7. Días que pasarán desde que la clave caduca hasta que se deshabilita la cuenta
+
+	passwd [usuario]: cambia la contraseña de un usuario. Con -l deshabilita una contraseña (añadiendo un ! al inicio de la misma). Con -u la habilita
+	
+	chage [usuario]: muestra información o cambia la validez de las contraseñas	(sin parámetro muestra un asistente)
+		-d: establece el día del último cambio de la contraseña
+		-E: establece la fecha de caducidad de la cuenta
+		-I: deshabilita la cuenta después de X días de la fecha de caducidad de la contraseña
+		-l: muestra información de la cuenta
+		-m: número mínimo de días antes de cambiar la contraseña
+		-M: número máximo de días antes de cambiar la contraseña
+		-W: días de aviso de expiración
+Administración de grupos de usuarios
+	‣ /etc/group: fichero donde se guardarán los grupos y quienes pertenecen a ellos de forma secundaria
+			alumnos:x:1002:juan,maria		1:2:3:4
+		1. Nombre del grupo
+		2. Contraseña en gshadow
+		3. GID (Group ID)
+		4. Lista de nombre de usuarios separados por comas que pertenecen al grupo de forma secundaria
+
+	groupadd nombre_grupo		Crea un nuevo grupo
+
+	‣ /etc/skel/: El directorio por defecto cuyo contenido se copia a los nuevos directorios personales de los usuarios
+	getent: comando para obtener información sobre usuarios, grupos,contraseñas, etc. Ejemplos:
+		getent passwd alumno
+		getent group clase1
+	groupdel: Borra un grupo
+	groupmod: Modifica un grupo
+	usermod: Modifica un usuario
+	userdel: Borra un usuario. Con -r elimina sus directorios home y de email.
+...			...			...			...			...
+in	Crea un enlace a un elemento del sistema de ficheros.Sin opciones creamos un enlace duro y con -s un enlace simbólico (o blando)
+	Un enlace duro es un puntero a la información de disco, mientras que uno blando apunta a la ruta.
+	A los directorios siempre se harán enlaces simbólicos.
+	Ejemplos:
+		ln /etc/sources.list ~/repos
+	Crea un enlace fuerte llamado repos que tendrá la misma información que el source.list
+		ln -s /var/cache/apt/archives/ /paquetes/
+	Crea un enlace simbólico llamado paquetes, que irá a /var/cache/apt/archives/
+

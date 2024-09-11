@@ -1,0 +1,34 @@
+LAMP	es el acrónimo usado para describir un sistema de infraestructura de internet que usa las siguientes 	herramientas:
+
+	Linux, el sistema operativo; En algunos casos también se refiere a LDAP.
+	Apache, el servidor web;
+	MySQL/MariaDB, el gestor de bases de datos;
+	PHP, el lenguaje de programación.
+
+FOSS	Free and Open Source Software
+
+FLOSS	Free/Libre and Open Source Software
+
+Copyleft (Impulsado por la Free Software Fundation FSF)el autor exige que los beneficiarios preserven las mismas libertades de distribución de copias de derivados.
+
+GNU	General Public License - creada por la FSF, Es copyleft
+
+OSI	Open Source Initiative
+
+FreeBSD LIcense -Licencia permisiva , no incluye copyleft, se puede hacer cualquier cosa con el código, incluso venderlo y cerrarlo, Pero incluyen una clausula de exención de responsabilidad que  debe ser mantenida.
+
+CC	Creative Commons, filosofía abierta q se puede aplicar a muchas variantes.
+	Attribution CC BY , autoriza cualquier uso pero debes mencionar al autor.
+	Attribution ShareAlike CC BY-SA , los trabajos deribados deben compartirse con la misma licencia.
+	Attribution No-Derivs CC BY-ND , Puedes redistribuir el contenido bajo CC-BY, pero no lo puedes cambiar.
+	Attribution NonCommercial-ShareAlike CC-BY-NC-SA , como cc BY-NC, pero requiere que los cambios se compartan bajo la misma licencia.
+	Attribution NonCommercial-No-Derivs CC-BY-NC-ND , puedes distribuir como cc-BY pero sin fines comerciales ni modificaciones.
+	No Rights Reservados CC0,  Version de creative Commons de dominio público.
+
+Interprete de comandos - (Shell, Consola, Terminal, CLI), la shell más usada es bash, pero hay otras: sh, Tcsh/Csh, Zsh, Fish
+
+IaaS	Infrastructure As A Service, (AWS, Azure, Google Cloud)
+
+PaaS	Platform As A Service - (Heroku)
+
+SaaS	Software As A Service - (Dropbox, Gmail)
