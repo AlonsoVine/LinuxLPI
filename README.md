@@ -36,10 +36,6 @@ Este repositorio contiene diversos archivos y recursos útiles para prepararse p
 
 - **tutorialINDEPENDIENTE.pdf**: Un tutorial completo que cubre varios aspectos de la administración de sistemas Linux de forma independiente. Este documento es ideal para profundizar en temas avanzados.
 
-### 5. 🗂 **Archivo README**
-
-- **000_README.txt**: Archivo de texto que proporciona una descripción general del contenido del repositorio y cómo navegarlo. Es un buen punto de partida para entender la organización de los materiales.
-
 ## Cómo Utilizar Este Repositorio
 
 1. **Estudio Estructurado**: Comienza revisando los archivos en la sección "Archivos de Texto y Documentos Importantes" para construir una base sólida.
